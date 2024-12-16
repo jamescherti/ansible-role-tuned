@@ -9,6 +9,17 @@ For high traffic servers, using Tuned is beneficial as it can enhance network th
 
 This Ansible playbook ensures that the tuned package is installed and configured correctly based.
 
+## Usage
+
+### Example Playbook
+
+```ansible
+- hosts: SERVER
+  roles:
+    - {role: tuned,
+       tuned_profile: "throughput-performance"}
+```
+
 ## Author and license
 
 Copyright (C) 2020-2024 [James Cherti](https://www.jamescherti.com).
