@@ -16,7 +16,7 @@ For high traffic servers, using Tuned is beneficial as it can enhance network th
 
 ### Example Playbook
 
-```ansible
+```yaml
 - hosts: SERVER
   roles:
     - {role: tuned,
@@ -33,4 +33,4 @@ Distributed under terms of the MIT license.
 
 # Links
 
-- https://github.com/jamescherti/ansible-tuned
+- [ansible-tuned @GitHub](https://github.com/jamescherti/ansible-tuned)
