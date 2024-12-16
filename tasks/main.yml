@@ -32,6 +32,7 @@
 - name: Enable the tuned service
   ansible.builtin.service:
     name: "{{ tuned_service_name }}"
+    state: "{{ tuned_service_state }}"
     enabled: "{{ tuned_service_enabled }}"
 
 - name: Update tuned-main.conf
@@ -73,19 +74,21 @@
               - "{{ tuned_profile }}"
           changed_when: false
 
-        - name: Get the current tuned active profile
-          ansible.builtin.command: tuned-adm active
-          register: tuned_active
-          changed_when: false
-          environment:
-            LANG: "C"
+        - name: Get the active tuned profile
+          block:
+            - name: Get the current tuned active profile
+              ansible.builtin.command: tuned-adm active
+              register: tuned_active
+              changed_when: false
+              environment:
+                LANG: "C"
 
-        - name: Extract current profile from the output
-          ansible.builtin.set_fact:
-            tuned_new_profile: "{{ (tuned_active.stdout_lines[0] | regex_search('^[^:]+:\\s*(.*)\\s*', '\\1'))[0] }}"
+            - name: Extract current profile from the output
+              ansible.builtin.set_fact:
+                tuned_current_profile: "{{ (tuned_active.stdout_lines[0] | regex_search('^[^:]+:\\s*(.*)\\s*', '\\1'))[0] }}"
 
         - name: Assert that the profile has been changed
           ansible.builtin.assert:
             that:
-              - tuned_new_profile == tuned_profile
+              - tuned_current_profile == tuned_profile
             fail_msg: "Failed to change the profile to {{ tuned_profile }}"

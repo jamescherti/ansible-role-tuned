@@ -26,6 +26,7 @@
 
 tuned_package_name: 'tuned'
 tuned_service_name: 'tuned'
+tuned_service_state: started
 tuned_service_enabled: true
 
 # tuned-main.conf parameters:
