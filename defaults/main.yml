@@ -25,19 +25,18 @@
 #
 
 tuned_package_name: 'tuned'
-tuned_package_state: 'present'
-
 tuned_service_name: 'tuned'
-tuned_service_state: 'started'
-tuned_service_enabled: 'yes'
 
-tuned_config_dir: "/etc/tuned"
+tuned_config_dir: "/etc/tuned"  # Directory where tuned-main.conf is located
+
+# tuned-main.conf parameters:
 tuned_daemon: '1'
 tuned_dynamic_tuning: '1'
 tuned_sleep_interval: '1'
 tuned_update_interval: '10'
 tuned_recommend_command: '1'
 
+# Tuned profile:
 # - atomic-guest                - Optimize virtual guests based on the Atomic variant
 # - atomic-host                 - Optimize bare metal systems running the Atomic variant
 # - balanced                    - General non-specialized tuned profile

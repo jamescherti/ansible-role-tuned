@@ -7,7 +7,10 @@ Tuned is a dynamic adaptive system tuning tool used in Linux environments to opt
 
 For high traffic servers, using Tuned is beneficial as it can enhance network throughput and responsiveness by adjusting parameters like CPU frequency scaling, I/O scheduling, and network stack settings. This optimization results in improved server performance, reduced latency, and better handling of high loads, ultimately leading to a more efficient and reliable infrastructure for handling significant network traffic.
 
-This Ansible playbook ensures that the tuned package is installed and configured correctly based.
+## Feature
+
+- Install tuned and configure it using: `tuned_config_dir`, `tuned_daemon`, `tuned_dynamic_tuning`, `tuned_sleep_interval`, `tuned_update_interval`, `tuned_recommend_command`.
+- Activate the specified tuned profile using the `tuned_profile` variable.
 
 ## Usage
 
@@ -19,6 +22,8 @@ This Ansible playbook ensures that the tuned package is installed and configured
     - {role: tuned,
        tuned_profile: "throughput-performance"}
 ```
+
+The tuned package and service name can be specified using: `tuned_package_name` and `tuned_service_name`.
 
 ## Author and license
 
