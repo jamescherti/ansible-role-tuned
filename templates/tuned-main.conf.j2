@@ -1,0 +1,34 @@
+# tuned-main.conf - Global tuned configuration file.
+# Managed by Ansible
+
+# Whether to use the daemon. Operating without the daemon is possible but not
+# advised, as it limits functionality significantly. For instance, there will be
+# no D-Bus, no rollback of settings, no hotplug capability, and no dynamic
+# tuning, among other limitations.
+daemon = {{ tuned_daemon }}
+
+# Dynamically tune devices; if disabled, only static tuning will be used.
+dynamic_tuning = {{ tuned_dynamic_tuning }}
+
+# Specifies the sleep interval in seconds between event checks, balancing lower
+# system overhead with response time.
+sleep_interval = {{ tuned_sleep_interval }}
+
+# Update interval for dynamic tunings (in seconds). It must be multiply of the
+# sleep_interval.
+update_interval = {{ tuned_update_interval }}
+
+# Specifies the sleep interval in seconds between event checks, balancing lower
+# system overhead with response time.
+recommend_command = {{ tuned_recommend_command }}
+
+# Whether to reapply sysctl from the /etc/sysctl.conf, /etc/sysctl.d, etc. If
+# enabled, these sysctls will be reapplied after Tuned sysctls are applied,
+# meaning Tuned sysctls will not override system sysctls.
+reapply_sysctl = 1
+
+# Default priority assigned to instances
+default_instance_priority = 0
+
+# Udev buffer size
+udev_buffer_size = 1MB

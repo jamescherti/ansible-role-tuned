@@ -1,0 +1,68 @@
+---
+#
+# Copyright (C) 2020-2024 James Cherti
+# URL: https://github.com/jamescherti/ansible-tuned
+#
+# Distributed under terms of the MIT license.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+
+tuned_package_name: 'tuned'
+tuned_package_state: 'present'
+
+tuned_service_name: 'tuned'
+tuned_service_state: 'started'
+tuned_service_enabled: 'yes'
+
+tuned_config_dir: "/etc/tuned"
+tuned_daemon: '1'
+tuned_dynamic_tuning: '1'
+tuned_sleep_interval: '1'
+tuned_update_interval: '10'
+tuned_recommend_command: '1'
+
+# - atomic-guest                - Optimize virtual guests based on the Atomic variant
+# - atomic-host                 - Optimize bare metal systems running the Atomic variant
+# - balanced                    - General non-specialized tuned profile
+# - cpu-partitioning            - Optimize for CPU partitioning
+# - default                     - Legacy default tuned profile
+# - desktop                     - Optimize for the desktop use-case
+# - desktop-powersave           - Optmize for the desktop use-case with power saving
+# - enterprise-storage          - Legacy profile for RHEL6, for RHEL7, please use throughput-performance profile
+# - laptop-ac-powersave         - Optimize for laptop with power savings
+# - laptop-battery-powersave    - Optimize laptop profile with more aggressive power saving
+# - latency-performance         - Optimize for deterministic performance at the cost of increased power consumption
+# - mssql                       - Optimize for MS SQL Server
+# - network-latency             - Optimize for deterministic performance at the cost of increased power consumption, focused on low latency network performance
+# - network-throughput          - Optimize for streaming network throughput, generally only necessary on older CPUs or 40G+ networks
+# - oracle                      - Optimize for Oracle RDBMS
+# - powersave                   - Optimize for low power consumption
+# - realtime                    - Optimize for realtime workloads
+# - realtime-virtual-guest      - Optimize for realtime workloads running within a KVM guest
+# - realtime-virtual-host       - Optimize for KVM guests running realtime workloads
+# - sap-hana                    - Optimize for SAP HANA
+# - sap-hana-vmware             - Optimize for SAP HANA running inside a VMware guest
+# - sap-netweaver               - Optimize for SAP NetWeaver
+# - server-powersave            - Optimize for server power savings
+# - spindown-disk               - Optimize for power saving by spinning-down rotational disks
+# - throughput-performance      - Broadly applicable tuning that provides excellent performance across a variety of common server workloads
+# - virtual-guest               - Optimize for running inside a virtual guest
+# - virtual-host                - Optimize for running KVM guests
+tuned_profile: ''
