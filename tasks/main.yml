@@ -24,15 +24,15 @@
 # SOFTWARE.
 #
 
-- name: Apt-get install packages
+- name: Install tuned
   ansible.builtin.package:
     name: "{{ tuned_package_name }}"
     state: present
 
-- name: Enable tuned
+- name: Enable the tuned service
   ansible.builtin.service:
     name: "{{ tuned_service_name }}"
-    enabled: true
+    enabled: "{{ tuned_service_enabled }}"
 
 - name: Update tuned-main.conf
   ansible.builtin.template:
@@ -42,10 +42,10 @@
   notify: Restart tuned
   tags: tuned
 
-- name: Activate the profile
+- name: Activate the tuned profile
   when: tuned_profile != ''
   block:
-    - name: Get active tuned profile
+    - name: Get the active tuned profile
       block:
         - name: Get the current tuned active profile
           ansible.builtin.command: tuned-adm active
@@ -56,15 +56,15 @@
 
         - name: Extract current profile from the output
           ansible.builtin.set_fact:
-            current_profile: "{{ (tuned_active.stdout_lines[0] | regex_search('^[^:]+:\\s*(.*)\\s*', '\\1'))[0] }}"
-
-    - name: Profile change
-      ansible.builtin.debug:
-        msg: "Change from '{{ current_profile }}' to '{{ tuned_profile }}'"
+            tuned_current_profile: "{{ (tuned_active.stdout_lines[0] | regex_search('^[^:]+:\\s*(.*)\\s*', '\\1'))[0] }}"
 
     - name: Change active tuned profile
-      when: tuned_profile != current_profile
+      when: tuned_profile != tuned_current_profile
       block:
+        - name: Display the tuned profile
+          ansible.builtin.debug:
+            msg: "Change tuned profile from '{{ tuned_current_profile }}' to '{{ tuned_profile }}'"
+
         - name: "Change tuned profile to {{ tuned_profile }}"
           ansible.builtin.command:
             argv:
@@ -82,8 +82,9 @@
 
         - name: Extract current profile from the output
           ansible.builtin.set_fact:
-            new_profile: "{{ (tuned_active.stdout_lines[0] | regex_search('^[^:]+:\\s*(.*)\\s*', '\\1'))[0] }}"
+            tuned_new_profile: "{{ (tuned_active.stdout_lines[0] | regex_search('^[^:]+:\\s*(.*)\\s*', '\\1'))[0] }}"
 
-        - name: Debug current active profile after change
-          ansible.builtin.debug:
-            msg: "Tuned profile changed from {{ current_profile }} to {{ new_profile }}"
+        - name: Fail if the profile has not been changed.
+          when: tuned_new_profile != tuned_profile
+          ansible.builtin.fail:
+            msg: "Failed to change the profile to {{ tuned_profile }}"
