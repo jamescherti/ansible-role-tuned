@@ -84,7 +84,8 @@
           ansible.builtin.set_fact:
             tuned_new_profile: "{{ (tuned_active.stdout_lines[0] | regex_search('^[^:]+:\\s*(.*)\\s*', '\\1'))[0] }}"
 
-        - name: Fail if the profile has not been changed.
-          when: tuned_new_profile != tuned_profile
-          ansible.builtin.fail:
-            msg: "Failed to change the profile to {{ tuned_profile }}"
+        - name: Assert that the profile has been changed
+          ansible.builtin.assert:
+            that:
+              - tuned_new_profile == tuned_profile
+            fail_msg: "Failed to change the profile to {{ tuned_profile }}"
