@@ -27,8 +27,6 @@
 tuned_package_name: 'tuned'
 tuned_service_name: 'tuned'
 
-tuned_config_dir: "/etc/tuned"  # Directory where tuned-main.conf is located
-
 # tuned-main.conf parameters:
 tuned_daemon: '1'
 tuned_dynamic_tuning: '1'

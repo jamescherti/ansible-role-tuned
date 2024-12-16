@@ -36,7 +36,7 @@
 
 - name: Update tuned-main.conf
   ansible.builtin.template:
-    dest: "{{ tuned_config_dir }}/tuned-main.conf"
+    dest: "/etc/tuned/tuned-main.conf"
     src: "{{ role_path }}/templates/tuned-main.conf.j2"
     mode: "0644"
   notify: Restart tuned

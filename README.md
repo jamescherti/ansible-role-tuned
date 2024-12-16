@@ -9,7 +9,7 @@ For high traffic servers, using Tuned is beneficial as it can enhance network th
 
 ## Feature
 
-- Install tuned and configure it using: `tuned_config_dir`, `tuned_daemon`, `tuned_dynamic_tuning`, `tuned_sleep_interval`, `tuned_update_interval`, `tuned_recommend_command`.
+- Install tuned and configure it using: `tuned_daemon`, `tuned_dynamic_tuning`, `tuned_sleep_interval`, `tuned_update_interval`, `tuned_recommend_command`.
 - Activate the specified tuned profile using the `tuned_profile` variable.
 
 ## Usage
@@ -20,6 +20,8 @@ For high traffic servers, using Tuned is beneficial as it can enhance network th
 - hosts: SERVER
   roles:
     - {role: tuned,
+       tuned_package_name: 'tuned',
+       tuned_service_name: 'tuned',
        tuned_profile: "throughput-performance"}
 ```
 
