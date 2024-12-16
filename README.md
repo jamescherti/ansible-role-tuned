@@ -9,8 +9,8 @@ For high traffic servers, using Tuned is beneficial as it can enhance network th
 
 ## Feature
 
-- Install tuned and configure it using: `tuned_daemon`, `tuned_dynamic_tuning`, `tuned_sleep_interval`, `tuned_update_interval`, `tuned_recommend_command`.
-- Activate the specified tuned profile using the `tuned_profile` variable.
+- Install tuned and configure it using the Ansible variables: `tuned_daemon`, `tuned_dynamic_tuning`, `tuned_sleep_interval`, `tuned_update_interval`, and `tuned_recommend_command`.
+- Activate the specified tuned profile using the `tuned_profile` variable. (When the `tuned_profile` is not set, the role installs only tuned.)
 
 ## Usage
 
@@ -24,8 +24,6 @@ For high traffic servers, using Tuned is beneficial as it can enhance network th
        tuned_service_name: 'tuned',
        tuned_profile: "throughput-performance"}
 ```
-
-The tuned package and service name can be specified using: `tuned_package_name` and `tuned_service_name`.
 
 ## Author and license
 
