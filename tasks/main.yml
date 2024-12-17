@@ -24,6 +24,12 @@
 # SOFTWARE.
 #
 
+- name: Update Apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  changed_when: false
+
 - name: Install tuned
   ansible.builtin.package:
     name: "{{ tuned_package_name }}"
