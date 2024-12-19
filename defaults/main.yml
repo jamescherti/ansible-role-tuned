@@ -24,8 +24,6 @@
 # SOFTWARE.
 #
 
-tuned_package_name: 'tuned'
-tuned_service_name: 'tuned'
 tuned_service_state: started
 tuned_service_enabled: true
 
@@ -35,6 +33,8 @@ tuned_dynamic_tuning: '1'
 tuned_sleep_interval: '1'
 tuned_update_interval: '10'
 tuned_recommend_command: '1'
+
+tuned_update_package_cache: true
 
 # Tuned profile:
 # - atomic-guest                - Optimize virtual guests based on the Atomic variant

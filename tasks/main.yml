@@ -24,20 +24,36 @@
 # SOFTWARE.
 #
 
+- name: Fail if the OS family is not Debian or RedHat
+  ansible.builtin.assert:
+    that:
+      - ansible_os_family == "Debian" or ansible_os_family == 'RedHat'
+    fail_msg: "This playbook only supports Debian or RedHat OS families."
+
+- name: Dnf Install packages
+  when: ansible_os_family == "RedHat"
+  ansible.builtin.dnf:
+    name: tuned
+    update_cache: "{{ tuned_update_package_cache|bool }}"
+  with_items:
+    - tuned
+
 - name: Update Apt cache
+  when: ansible_os_family == "Debian" and tuned_update_package_cache|bool
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   changed_when: false
 
 - name: Install tuned
-  ansible.builtin.package:
-    name: "{{ tuned_package_name }}"
+  when: ansible_os_family == "Debian"
+  ansible.builtin.apt:
+    name: tuned
     state: present
 
 - name: Enable the tuned service
   ansible.builtin.service:
-    name: "{{ tuned_service_name }}"
+    name: tuned
     state: "{{ tuned_service_state }}"
     enabled: "{{ tuned_service_enabled }}"
 
@@ -48,6 +64,9 @@
     mode: "0644"
   notify: Restart tuned
   tags: tuned
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Activate the tuned profile
   when: tuned_profile != ''

@@ -11,6 +11,7 @@ For high traffic servers, using Tuned is beneficial as it can enhance network th
 
 - Install tuned and configure it using the Ansible variables: `tuned_daemon`, `tuned_dynamic_tuning`, `tuned_sleep_interval`, `tuned_update_interval`, and `tuned_recommend_command`.
 - Activate the specified tuned profile using the `tuned_profile` variable. (When the `tuned_profile` is not set, the role installs only tuned.)
+- Supports Debian/Ubuntu and RedHat family based operating systems.
 
 ## Usage
 
