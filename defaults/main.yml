@@ -34,7 +34,7 @@ tuned_sleep_interval: '1'
 tuned_update_interval: '10'
 tuned_recommend_command: '1'
 
-tuned_update_package_cache: true
+tuned_package_update_cache: true
 
 # Tuned profile:
 # - atomic-guest                - Optimize virtual guests based on the Atomic variant

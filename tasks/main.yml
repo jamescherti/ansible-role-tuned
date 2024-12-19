@@ -34,12 +34,12 @@
   when: ansible_os_family == "RedHat"
   ansible.builtin.dnf:
     name: tuned
-    update_cache: "{{ tuned_update_package_cache | bool }}"
+    update_cache: "{{ tuned_package_update_cache | bool }}"
   with_items:
     - tuned
 
 - name: Update Apt cache
-  when: ansible_os_family == "Debian" and tuned_update_package_cache|bool
+  when: ansible_os_family == "Debian" and tuned_package_update_cache | bool
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
