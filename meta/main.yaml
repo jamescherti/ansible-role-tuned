@@ -1,0 +1,11 @@
+---
+
+galaxy_info:
+  role_name: tuned
+  author: James Cherti
+  galaxy_tags: ['tuned']
+  description: Install, configure, and activate tuned
+  license: MIT
+  min_ansible_version: 2.2
+
+dependencies: []
