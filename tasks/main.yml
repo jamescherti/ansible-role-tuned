@@ -34,7 +34,7 @@
   when: ansible_os_family == "RedHat"
   ansible.builtin.dnf:
     name: tuned
-    update_cache: "{{ tuned_update_package_cache|bool }}"
+    update_cache: "{{ tuned_update_package_cache | bool }}"
   with_items:
     - tuned
 
