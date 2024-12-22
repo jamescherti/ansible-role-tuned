@@ -17,6 +17,8 @@ For high traffic servers, using Tuned is beneficial as it can enhance network th
 
 ### Example Playbook
 
+Here is an example of how to use ansible-tuned after installing it in the `roles/tuned` directory:
+
 ```yaml
 - hosts: SERVER
   roles:
