@@ -28,7 +28,7 @@ Here is an example of how to use ansible-tuned after installing it in the `roles
 
 ## Author and license
 
-Copyright (C) 2020-2024 [James Cherti](https://www.jamescherti.com).
+Copyright (C) 2020-2025 [James Cherti](https://www.jamescherti.com).
 
 Distributed under terms of the MIT license.
 
