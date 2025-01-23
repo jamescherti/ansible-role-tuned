@@ -1,5 +1,5 @@
-# ansible-tuned
-![License](https://img.shields.io/github/license/jamescherti/ansible-tuned)
+# ansible-role-tuned
+![License](https://img.shields.io/github/license/jamescherti/ansible-role-tuned)
 
 This Ansible playbook manages the installation, configuration, and activation of the tuned service.
 
@@ -17,7 +17,7 @@ For high traffic servers, using Tuned is beneficial as it can enhance network th
 
 ### Example Playbook
 
-Here is an example of how to use ansible-tuned after installing it in the `roles/tuned` directory:
+Here is an example of how to use ansible-role-tuned after installing it in the `roles/tuned` directory:
 
 ```yaml
 - hosts: SERVER
@@ -34,4 +34,4 @@ Distributed under terms of the MIT license.
 
 # Links
 
-- [ansible-tuned @GitHub](https://github.com/jamescherti/ansible-tuned)
+- [ansible-role-tuned @GitHub](https://github.com/jamescherti/ansible-role-tuned)
