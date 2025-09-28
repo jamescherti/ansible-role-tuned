@@ -1,7 +1,7 @@
 # ansible-role-tuned
 ![License](https://img.shields.io/github/license/jamescherti/ansible-role-tuned)
 
-This Ansible playbook manages the installation, configuration, and activation of the tuned service.
+The [ansible-role-tuned](https://github.com/jamescherti/ansible-role-tuned) Ansible playbook manages the installation, configuration, and activation of the tuned service.
 
 Tuned is a dynamic adaptive system tuning tool used in Linux environments to optimize performance by adjusting various system settings dynamically. It provides pre-defined profiles that target specific use cases, such as high throughput, low latency, and energy saving, and automatically applies these configurations based on system activity.
 
